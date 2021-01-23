@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Commander.Models;
 using System.Linq;
-
+using System;
 
 namespace Commander.Data
 {
@@ -13,6 +13,17 @@ namespace Commander.Data
         {
             _context = context;
         }
+
+        public void CreateCommand(Command cmd)
+        {
+            // throw new System.NotImplementedException();
+            if(cmd == null)
+            {
+                throw new ArgumentNullException(nameof(cmd));
+            }
+            _context.Commands.Add(cmd);
+        }
+
         public IEnumerable<Command> GetAllCommands()
         {
             return _context.Commands.ToList();
@@ -21,6 +32,12 @@ namespace Commander.Data
         public Command GetCommandById(int id)
         {
             return _context.Commands.FirstOrDefault(p => p.Id == id);
+        }
+
+        public bool SaveChanges()
+        {
+            // throw new System.NotImplementedException();
+            return (_context.SaveChanges() >= 0 );
         }
     }
 }
