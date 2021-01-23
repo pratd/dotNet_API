@@ -24,6 +24,16 @@ namespace Commander.Data
             _context.Commands.Add(cmd);
         }
 
+        public void DeleteCommand(Command cmd)
+        {
+            // throw new NotImplementedException();
+            if(cmd == null)
+            {
+                throw new ArgumentNullException(nameof(cmd));
+            }
+            _context.Commands.Remove(cmd);
+        }
+
         public IEnumerable<Command> GetAllCommands()
         {
             return _context.Commands.ToList();
@@ -38,6 +48,13 @@ namespace Commander.Data
         {
             // throw new System.NotImplementedException();
             return (_context.SaveChanges() >= 0 );
+        }
+
+        public void UpdateCommand(Command cmd)
+        {
+            // throw new NotImplementedException();
+
+            // DO nothing
         }
     }
 }
